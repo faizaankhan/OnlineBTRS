@@ -1,0 +1,90 @@
+drop database bus_res;
+create database bus_res;
+use bus_res;
+
+
+create table bus
+(
+bid varchar(10) primary key,
+no_seats int(2),
+type varchar(3),
+time time(3),
+source varchar(10),
+dest varchar(10),
+fare float(7,2)
+);
+
+
+
+create table user
+(
+cid varchar(40) primary key,
+cfname varchar(30),
+clname varchar(30),
+sex varchar(1),
+city varchar(10),
+cphn varchar(13),
+password varchar(16)
+);
+
+
+CREATE TABLE Reservation
+(
+tid int NOT NULL AUTO_INCREMENT,
+r_date date,
+cid varchar(40) references customer(cid),
+bid varchar(10) references bus(bid),
+trvl_date date,
+PRIMARY KEY (tid)
+);
+
+
+
+desc user;
+desc bus;
+desc reservation;
+
+INSERT INTO bus VALUES
+	('B123',32,'NAC','12:30:00','Howrah','Burdwan',100.50),
+	('S124',30,'NAC','09:36:00','Howrah','Siliguri',170.50),
+	('P125',32,'AC','13:05:00','Howrah','Patna',200.00),
+	('D126',28,'NAC','17:00:00','Patna','Delhi',400.00),	
+	('D127',32,'NAC','23:45:00','Siliguri','Dhanbad',270.50),
+	('S128',30,'AC','09:45:00','Siliguri','Burdwan',140.00),
+	('P129',32,'NAC','13:45:00','Howrah','Purulia',75.00),
+	('B130',31,'AC','01:45:00','Howrah','Burdwan',170.50),
+	('S131',32,'NAC','11:25:00','Siliguri','Purulia',200.50),
+	('H132',30,'AC','07:15:00','Siliguri','Howrah',170.50),
+	('H133',32,'AC','09:05:00','Burdwan','Howrah',130.00),
+	('P134',32,'NAC','15:30:00','Purulia','Howrah',75.00),
+	('P135',31,'AC','18:45:00','Purulia','Patna',222.00),
+	('G136',30,'AC','07:00:00','Howrah','Gaya',250.00),
+	('G137',32,'NAC','16:40:00','Gaya','Howrah',222.00);
+	
+INSERT INTO user VALUES
+	('admin@admin.com','Admin','Admin','m','Burdwan','9093340081','admin123'),
+	('rudradev.pal@gmail.com','Rudra Dev','Pal','m','Burdwan','9093340081','rudra123'),
+	('subhashree.krmr@gmail.com','Subhashree','Karmakar','f','Siliguri','8900538862','subhashree123'),
+	('faizaan.khan3@gmail.com','Faizaan','Khan','m','Patna','9832710273','faizaan123'),
+	('souravtanti@gmail.com','Sourav','Tanti','m','Purulia','9093340022','sourav123'),
+	('arkamanna@gmail.com','Arka','Manna','m','Patna','7021340081','arka123'),
+	('kekapanja@gmail.com','Keka','Panja','f','Burdwan','9033333081','keka123'),
+	('toarnabchak@gmail.com','Arnab','Chakborty','m','Howrah','9876543210','arnab123'),
+	('koustubhmajee@gmail.com','Koustubh','Majee','m','Dhanbad','9474463966','koustubh123'),
+	('smartranjan1993@gmail.com','Ranjan','Kumar','m','Gaya','8013945715','ranjan123');
+
+INSERT INTO Reservation (r_date,cid,bid,trvl_date) VALUES
+	('2016-01-04','rudradev.pal@gmail.com','B123','2016-01-06'),
+	('2016-01-03','subhashree.krmr@gmail.com','S124','2016-01-18'),
+	('2016-01-02','smartranjan1993@gmail.com','G136','2016-01-19'),
+	('2016-01-01','toarnabchak@gmail.com','B130','2016-01-20'),
+	('2016-01-11','koustubhmajee@gmail.com','P134','2016-01-15'),
+	('2016-01-12','subhashree.krmr@gmail.com','H132','2016-01-13'),
+	('2016-01-03','rudradev.pal@gmail.com','H133','2016-01-04'),
+	('2016-01-02','faizaan.khan3@gmail.com','P125','2016-01-03');
+	
+	
+Select * from bus;
+Select * from user;
+Select * from reservation;
+
